@@ -3,8 +3,8 @@ from ssl import SSLContext, PROTOCOL_TLS_CLIENT
 
 
 hostname='example.org'
-ip = '127.0.0.1'
-port = 8443
+ip = '192.168.1.10'
+port = 3000
 context = SSLContext(PROTOCOL_TLS_CLIENT)
 context.load_verify_locations('cert.pem')
 
