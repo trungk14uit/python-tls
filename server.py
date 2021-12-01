@@ -2,8 +2,8 @@ from socket import socket, AF_INET, SOCK_STREAM
 from ssl import SSLContext, PROTOCOL_TLS_SERVER
 
 
-ip = '127.0.0.1'
-port = 8443
+ip = '192.168.1.10'
+port = 3000
 context = SSLContext(PROTOCOL_TLS_SERVER)
 context.load_cert_chain('cert.pem', 'key.pem')
 
