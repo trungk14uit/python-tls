@@ -11,7 +11,12 @@ context.load_verify_locations('cert.pem')
 with create_connection((ip, port)) as client:
     with context.wrap_socket(client, server_hostname=hostname) as tls:
         print(f'Using {tls.version()}\n')
-        tls.sendall(b'Hello, world')
-
-        data = tls.recv(1024)
-        print(f'Server says: {data}')
+        while True:
+            m = input('Client: ')
+            tls.sendall(bytes(m,"utf8"))
+            if m == "quit":
+                break
+            data = tls.recv(1024)
+            if (data.decode("utf8"))=="quit":
+                break
+            print('Server: ',data.decode("utf8"))
