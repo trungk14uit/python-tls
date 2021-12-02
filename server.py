@@ -13,8 +13,15 @@ with socket(AF_INET, SOCK_STREAM) as server:
     with context.wrap_socket(server, server_side=True) as tls:
         connection, address = tls.accept()
         print(f'Connected by {address}\n')
-
-        data = connection.recv(1024)
-        print(f'Client Says: {data}')
-
-        connection.sendall(b"You're welcome")
+        
+        while True:
+            data = connection.recv(1024)
+            str_d = data.decode("utf8")
+            if str_d =="quit":
+                break
+            print("Client: "+str_d)
+            m = input("Servre: ")
+            connection.sendall(bytes(m,"utf8"))
+            if m == "quit":
+                break
+       
